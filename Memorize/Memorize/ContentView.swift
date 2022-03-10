@@ -13,33 +13,37 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            HStack{
+            ScrollView {
                 
-                ForEach(emojis[0..<emojiCount], id: \.self) { emoji in
-                    CardView(content: emoji)
+                
+                LazyVGrid(columns: [GridItem(), GridItem(), GridItem()]){
+                    
+                    ForEach(emojis[0..<emojiCount], id: \.self) { emoji in
+                        CardView(content: emoji).aspectRatio(2/3, contentMode: .fit)
+                    }
+                    
+                    
+                    //            CardView(content: emojis[0])
+                    //            CardView(content: emojis[1])
+                    //            CardView(content: emojis[2])
+                    //            CardView(content: emojis[3])
+                    //            CardView(content: emojis[4])
+                    
                 }
-                //            CardView(content: emojis[0])
-                //            CardView(content: emojis[1])
-                //            CardView(content: emojis[2])
-                //            CardView(content: emojis[3])
-                //            CardView(content: emojis[4])
-                
-            }
+            }.foregroundColor(.red)
             
-            Spacer()
+            // Spacer()
             
             HStack{
                 remove
                 Spacer()
                 add
-
+                
             }.padding(.horizontal).font(.largeTitle)
             
             
-        }
+        }.padding(.horizontal)
         
-        .padding(.horizontal)
-        .foregroundColor(.red)
     }
     
     
@@ -50,7 +54,7 @@ struct ContentView: View {
                 emojiCount -= 1
                 
             }
-          
+            
             
         }, label: {
             Image(systemName: "minus.circle")
@@ -67,7 +71,7 @@ struct ContentView: View {
             
             
         }, label: {
-           Image(systemName: "plus.circle")
+            Image(systemName: "plus.circle")
         })
     }
     
